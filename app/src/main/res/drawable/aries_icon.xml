@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    
+    <!-- Círculo de fondo verde -->
+    <path
+        android:fillColor="#B9F6CA"
+        android:strokeColor="#388E3C"
+        android:strokeWidth="4"
+        android:pathData="M48,2 A46,46 0 1,1 48,94 A46,46 0 1,1 48,2 Z"/>
+    
+    <!-- Sombrero vueltiao (forma curva) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#388E3C"
+        android:strokeWidth="6"
+        android:pathData="M24,48 Q24,24 48,32 Q72,24 72,48 Q72,72 48,80 Q24,72 24,48 Z"/>
+    
+    <!-- Símbolo de Aries (♈) -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M38,40 L42,40 L42,44 L46,44 L46,48 L42,48 L42,52 L38,52 L38,48 L34,48 L34,44 L38,44 Z"/>
+    
+    <!-- Cuernos del carnero -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M34,36 Q32,32 30,36 Q28,40 30,44 L34,44 Z"/>
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M46,36 Q48,32 50,36 Q52,40 50,44 L46,44 Z"/>
+</vector> 
