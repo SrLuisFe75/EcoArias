@@ -10,4 +10,11 @@
     <color name="cotton_candy_pink">#FFC1E3</color>
     <color name="cotton_candy_blue">#B2EBF2</color>
     <color name="pastel_green">#B9F6CA</color>
+    
+    <!-- Colores Caribeños para Eco Arias -->
+    <color name="eco_arias_primary">#FF6B35</color> <!-- Naranja Caribeño -->
+    <color name="eco_arias_secondary">#4ECDC4</color> <!-- Turquesa Costeño -->
+    <color name="eco_arias_accent">#FFE66D</color> <!-- Amarillo Sol -->
+    <color name="eco_arias_background">#2C3E50</color> <!-- Azul Noche -->
+    <color name="eco_arias_text">#FFFFFF</color> <!-- Blanco -->
 </resources>
