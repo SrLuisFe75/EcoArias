@@ -156,7 +156,8 @@ class MainActivity : AppCompatActivity() {
                         val urllib = py.getModule("urllib.request")
                         val json = py.getModule("json")
                         
-                        val response = urllib.callAttr("urlopen", "https://httpbin.org/ip", 10)
+                        // El tercer argumento es None (cuerpo), el cuarto es kwargs
+                        val response = urllib.callAttr("urlopen", "https://httpbin.org/ip", null, mapOf("timeout" to 10))
                         val data = response.callAttr("read").callAttr("decode", "utf-8")
                         val result = json.callAttr("loads", data)
                         val ip = result.get("origin").toString()
