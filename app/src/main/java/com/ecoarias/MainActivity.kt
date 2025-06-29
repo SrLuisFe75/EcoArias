@@ -151,35 +151,37 @@ class MainActivity : AppCompatActivity() {
                         updateTextViewForcefully(statusText, "🌐 Probando conectividad...")
                     }
                     
-                    // Test de red con Python
-                    val networkTestScript = """
-import urllib.request
-import json
-
-def test_network():
-    try:
-        response = urllib.request.urlopen('https://httpbin.org/ip', timeout=10)
-        data = response.read().decode('utf-8')
-        result = json.loads(data)
-        return f"✅ Red OK: IP {result['origin']}"
-    except Exception as e:
-        return f"❌ Error: {e}"
-
-result = test_network()
-print(result)
-"""
-                    
-                    py.getModule("__main__").callAttr("exec", networkTestScript)
-                    
-                    runOnUiThread {
-                        updateTextViewForcefully(statusText, "🎉 ¡Python + Red funcionan!")
-                        statusText.setBackgroundColor(0xFF4CAF50.toInt()) // Verde éxito
-                        forceViewRefresh(statusText)
+                    // Test de red con Python - Método corregido
+                    try {
+                        val urllib = py.getModule("urllib.request")
+                        val json = py.getModule("json")
                         
-                        Toast.makeText(this@MainActivity, "🎉 ¡TODO FUNCIONA!", Toast.LENGTH_LONG).show()
+                        val response = urllib.callAttr("urlopen", "https://httpbin.org/ip", 10)
+                        val data = response.callAttr("read").callAttr("decode", "utf-8")
+                        val result = json.callAttr("loads", data)
+                        val ip = result.get("origin").toString()
+                        
+                        val resultado = "✅ Red OK: IP $ip"
+                        Log.d(TAG, resultado)
+                        
+                        runOnUiThread {
+                            updateTextViewForcefully(statusText, resultado)
+                            statusText.setBackgroundColor(0xFF4CAF50.toInt()) // Verde éxito
+                            forceViewRefresh(statusText)
+                            
+                            Toast.makeText(this@MainActivity, "🎉 ¡PYTHON + RED FUNCIONAN!", Toast.LENGTH_LONG).show()
+                        }
+                        
+                        Log.d(TAG, "🎉 ¡PYTHON + RED FUNCIONAN PERFECTAMENTE!")
+                        
+                    } catch (networkError: Exception) {
+                        Log.e(TAG, "Error de red: ${networkError.message}")
+                        runOnUiThread {
+                            updateTextViewForcefully(statusText, "❌ Error de red: ${networkError.message}")
+                            statusText.setBackgroundColor(0xFFFF9800.toInt()) // Naranja warning
+                            forceViewRefresh(statusText)
+                        }
                     }
-                    
-                    Log.d(TAG, "🎉 ¡PYTHON + RED FUNCIONAN PERFECTAMENTE!")
                     
                 } catch (e: Exception) {
                     Log.e(TAG, "❌ Error en Python/Red: ${e.message}")
